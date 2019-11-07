@@ -192,6 +192,19 @@ extension ColorSlider {
 			}
 		}
 	}
+    
+    public func updatePreview() {
+        guard let color = previewView?.backgroundColor else { return }
+        internalColor = HSBColor(color: color)
+        if internalColor.hue == 0 {
+            // Initially set preview center to the top or left
+            centerPreview(at: .zero)
+        } else {
+            // Set preview center from `internalColor`
+            let sliderProgress = gradientView.calculateSliderProgress(for: internalColor)
+            centerPreview(at: CGPoint(x: sliderProgress * bounds.width, y: sliderProgress * bounds.height))
+        }
+    }
 	
 	/// Center the preview view at a particular point, given the orientation.
 	///
