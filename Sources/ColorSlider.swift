@@ -193,8 +193,7 @@ extension ColorSlider {
 		}
 	}
     
-    public func updatePreview() {
-        guard let color = previewView?.backgroundColor else { return }
+    public func updatePreview(color: UIColor ) {
         internalColor = HSBColor(color: color)
         if internalColor.hue == 0 {
             // Initially set preview center to the top or left
